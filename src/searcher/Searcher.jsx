@@ -5,12 +5,32 @@ import { getResults } from '../lib/RequestApi';
 const SearchResults = ({ data }) => {
   console.log("SearchResults ", data);
   return(
-     <ul className="list-group">
-        { data?.length > 0 && data.map((item) => 
-           
-           <li key={item.id} className="list-group-item" > { item.id } </li>
-        ) }
-     </ul>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Model</th>
+          <th scope="col">Brand</th>
+          <th scope="col">Year</th>
+          <th scope="col">Mileage</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+      { data?.length > 0 && data.map((item) => 
+         <tr key={item.id}>
+           <th>{item.id}</th>
+           <td>{item.model_name}</td>
+           <td>{item.brand_name}</td>
+           <td>{item.year}</td>
+           <td>{item.mileage}</td>
+           <td>{item.price}</td>
+         </tr>
+        ) 
+      }
+      </tbody>
+        
+    </table>
   )
 }
 
@@ -49,8 +69,8 @@ const Searcher = () => {
           <button type="button" className="btn btn-primary mb-3" onClick={ handleButton } >Search</button>
         </div>
       </div>
-      <div className="row">
-
+      <div className="g-3">
+      
       <SearchResults 
          data = { results }
       />
